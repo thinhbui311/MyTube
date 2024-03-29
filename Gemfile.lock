@@ -178,6 +178,7 @@ GEM
     nokogiri (1.16.3-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
+    pg (1.5.6)
     pry (0.14.2)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -323,6 +324,7 @@ DEPENDENCIES
   jbuilder
   jsbundling-rails
   kaminari
+  pg
   pry-rails
   pry-remote
   puma (>= 5.0)
