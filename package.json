@@ -1,0 +1,28 @@
+{
+  "name": "mytube",
+  "private": true,
+  "scripts": {
+    "build": "esbuild ./app/javascript/* --bundle --outdir=app/assets/builds",
+    "build:css": "postcss ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --full"
+  },
+  "dependencies": {
+    "@hotwired/stimulus": "^3.2.2",
+    "alpinejs": "^2.8.1",
+    "esbuild": "^0.20.2",
+    "postcss-minify": "^1.1.0",
+    "autoprefixer": "^10.4.2"
+  },
+  "devDependencies": {
+    "@tailwindcss/aspect-ratio": "^0.4.0",
+    "@tailwindcss/forms": "^0.4.0",
+    "@tailwindcss/line-clamp": "^0.3.1",
+    "@tailwindcss/typography": "^0.5.2",
+    "postcss": "^8.4.7",
+    "postcss-cli": "^9.1.0",
+    "postcss-import": "^14.0.2",
+    "stimulus-vite-helpers": "^3.0.1",
+    "tailwindcss": "^3.0.23",
+    "turbolinks": "^5.2.0",
+    "vue": "^3.2.47"
+  }
+}
