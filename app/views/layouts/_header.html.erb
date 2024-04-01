@@ -1,6 +1,6 @@
-<div class="flex items-center justify-between">
+<div class="flex items-center justify-between m-3 pb-3 border-b">
   <div>
-    <h2 class="text-2xl font-bold leading-7 sm:truncate sm:text-3xl text-[#574b90]">MyTube</h2>
+    <%= link_to "MyTube", videos_path, class: "text-2xl font-bold leading-7 sm:truncate sm:text-3xl text-[#574b90]" %>
   </div>
   <div class="flex ml-4">
     <% if current_user.present? %>

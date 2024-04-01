@@ -13,9 +13,11 @@ gem "rails", "~> 7.1.3", ">= 7.1.3.2"
 gem "redis", ">= 4.0.1"
 gem "sprockets-rails"
 gem "sqlite3", "~> 1.4"
+gem "sidekiq"
 gem "stimulus-rails"
 gem "turbo-rails"
 gem "tzinfo-data", platforms: %i[ mswin mswin64 mingw x64_mingw jruby ]
+gem "yt"
 
 gem "jsbundling-rails"
 gem "cssbundling-rails"

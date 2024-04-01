@@ -8,16 +8,17 @@
     <%= stylesheet_link_tag "application", media: "all", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", "data-turbolinks-eval": false, defer: true %>
   </head>
-  <body class="max-w-7xl mx-auto">
-    <div class="main-header m-3 pb-3 border-b">
+  <body class="max-w-7xl mx-auto flex flex-col h-screen justify-between">
+    <div class="main-header">
       <%= render "layouts/header" %>
     </div>
 
-    <div class="main-content">
+    <div class="main-content w-full mx-auto grow">
       <%= yield %>
     </div>
 
     <div class="main-footer">
+      <%= render "layouts/footer" %>
     </div>
   </body>
 </html>

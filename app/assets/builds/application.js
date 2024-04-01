@@ -1,4 +1,337 @@
 (() => {
+  var __create = Object.create;
+  var __defProp = Object.defineProperty;
+  var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+  var __getOwnPropNames = Object.getOwnPropertyNames;
+  var __getProtoOf = Object.getPrototypeOf;
+  var __hasOwnProp = Object.prototype.hasOwnProperty;
+  var __commonJS = (cb, mod) => function __require() {
+    return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
+  };
+  var __copyProps = (to, from, except, desc) => {
+    if (from && typeof from === "object" || typeof from === "function") {
+      for (let key of __getOwnPropNames(from))
+        if (!__hasOwnProp.call(to, key) && key !== except)
+          __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+    }
+    return to;
+  };
+  var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+    // If the importer is in node compatibility mode or this is not an ESM
+    // file that has been converted to a CommonJS file using a Babel-
+    // compatible transform (i.e. "__esModule" has not been set), then set
+    // "default" to the CommonJS "module.exports" for node compatibility.
+    isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
+    mod
+  ));
+
+  // node_modules/toastify-js/src/toastify.js
+  var require_toastify = __commonJS({
+    "node_modules/toastify-js/src/toastify.js"(exports, module) {
+      (function(root, factory) {
+        if (typeof module === "object" && module.exports) {
+          module.exports = factory();
+        } else {
+          root.Toastify = factory();
+        }
+      })(exports, function(global) {
+        var Toastify2 = function(options) {
+          return new Toastify2.lib.init(options);
+        }, version = "1.12.0";
+        Toastify2.defaults = {
+          oldestFirst: true,
+          text: "Toastify is awesome!",
+          node: void 0,
+          duration: 3e3,
+          selector: void 0,
+          callback: function() {
+          },
+          destination: void 0,
+          newWindow: false,
+          close: false,
+          gravity: "toastify-top",
+          positionLeft: false,
+          position: "",
+          backgroundColor: "",
+          avatar: "",
+          className: "",
+          stopOnFocus: true,
+          onClick: function() {
+          },
+          offset: { x: 0, y: 0 },
+          escapeMarkup: true,
+          ariaLive: "polite",
+          style: { background: "" }
+        };
+        Toastify2.lib = Toastify2.prototype = {
+          toastify: version,
+          constructor: Toastify2,
+          // Initializing the object with required parameters
+          init: function(options) {
+            if (!options) {
+              options = {};
+            }
+            this.options = {};
+            this.toastElement = null;
+            this.options.text = options.text || Toastify2.defaults.text;
+            this.options.node = options.node || Toastify2.defaults.node;
+            this.options.duration = options.duration === 0 ? 0 : options.duration || Toastify2.defaults.duration;
+            this.options.selector = options.selector || Toastify2.defaults.selector;
+            this.options.callback = options.callback || Toastify2.defaults.callback;
+            this.options.destination = options.destination || Toastify2.defaults.destination;
+            this.options.newWindow = options.newWindow || Toastify2.defaults.newWindow;
+            this.options.close = options.close || Toastify2.defaults.close;
+            this.options.gravity = options.gravity === "bottom" ? "toastify-bottom" : Toastify2.defaults.gravity;
+            this.options.positionLeft = options.positionLeft || Toastify2.defaults.positionLeft;
+            this.options.position = options.position || Toastify2.defaults.position;
+            this.options.backgroundColor = options.backgroundColor || Toastify2.defaults.backgroundColor;
+            this.options.avatar = options.avatar || Toastify2.defaults.avatar;
+            this.options.className = options.className || Toastify2.defaults.className;
+            this.options.stopOnFocus = options.stopOnFocus === void 0 ? Toastify2.defaults.stopOnFocus : options.stopOnFocus;
+            this.options.onClick = options.onClick || Toastify2.defaults.onClick;
+            this.options.offset = options.offset || Toastify2.defaults.offset;
+            this.options.escapeMarkup = options.escapeMarkup !== void 0 ? options.escapeMarkup : Toastify2.defaults.escapeMarkup;
+            this.options.ariaLive = options.ariaLive || Toastify2.defaults.ariaLive;
+            this.options.style = options.style || Toastify2.defaults.style;
+            if (options.backgroundColor) {
+              this.options.style.background = options.backgroundColor;
+            }
+            return this;
+          },
+          // Building the DOM element
+          buildToast: function() {
+            if (!this.options) {
+              throw "Toastify is not initialized";
+            }
+            var divElement = document.createElement("div");
+            divElement.className = "toastify on " + this.options.className;
+            if (!!this.options.position) {
+              divElement.className += " toastify-" + this.options.position;
+            } else {
+              if (this.options.positionLeft === true) {
+                divElement.className += " toastify-left";
+                console.warn("Property `positionLeft` will be depreciated in further versions. Please use `position` instead.");
+              } else {
+                divElement.className += " toastify-right";
+              }
+            }
+            divElement.className += " " + this.options.gravity;
+            if (this.options.backgroundColor) {
+              console.warn('DEPRECATION NOTICE: "backgroundColor" is being deprecated. Please use the "style.background" property.');
+            }
+            for (var property in this.options.style) {
+              divElement.style[property] = this.options.style[property];
+            }
+            if (this.options.ariaLive) {
+              divElement.setAttribute("aria-live", this.options.ariaLive);
+            }
+            if (this.options.node && this.options.node.nodeType === Node.ELEMENT_NODE) {
+              divElement.appendChild(this.options.node);
+            } else {
+              if (this.options.escapeMarkup) {
+                divElement.innerText = this.options.text;
+              } else {
+                divElement.innerHTML = this.options.text;
+              }
+              if (this.options.avatar !== "") {
+                var avatarElement = document.createElement("img");
+                avatarElement.src = this.options.avatar;
+                avatarElement.className = "toastify-avatar";
+                if (this.options.position == "left" || this.options.positionLeft === true) {
+                  divElement.appendChild(avatarElement);
+                } else {
+                  divElement.insertAdjacentElement("afterbegin", avatarElement);
+                }
+              }
+            }
+            if (this.options.close === true) {
+              var closeElement = document.createElement("button");
+              closeElement.type = "button";
+              closeElement.setAttribute("aria-label", "Close");
+              closeElement.className = "toast-close";
+              closeElement.innerHTML = "&#10006;";
+              closeElement.addEventListener(
+                "click",
+                function(event) {
+                  event.stopPropagation();
+                  this.removeElement(this.toastElement);
+                  window.clearTimeout(this.toastElement.timeOutValue);
+                }.bind(this)
+              );
+              var width = window.innerWidth > 0 ? window.innerWidth : screen.width;
+              if ((this.options.position == "left" || this.options.positionLeft === true) && width > 360) {
+                divElement.insertAdjacentElement("afterbegin", closeElement);
+              } else {
+                divElement.appendChild(closeElement);
+              }
+            }
+            if (this.options.stopOnFocus && this.options.duration > 0) {
+              var self = this;
+              divElement.addEventListener(
+                "mouseover",
+                function(event) {
+                  window.clearTimeout(divElement.timeOutValue);
+                }
+              );
+              divElement.addEventListener(
+                "mouseleave",
+                function() {
+                  divElement.timeOutValue = window.setTimeout(
+                    function() {
+                      self.removeElement(divElement);
+                    },
+                    self.options.duration
+                  );
+                }
+              );
+            }
+            if (typeof this.options.destination !== "undefined") {
+              divElement.addEventListener(
+                "click",
+                function(event) {
+                  event.stopPropagation();
+                  if (this.options.newWindow === true) {
+                    window.open(this.options.destination, "_blank");
+                  } else {
+                    window.location = this.options.destination;
+                  }
+                }.bind(this)
+              );
+            }
+            if (typeof this.options.onClick === "function" && typeof this.options.destination === "undefined") {
+              divElement.addEventListener(
+                "click",
+                function(event) {
+                  event.stopPropagation();
+                  this.options.onClick();
+                }.bind(this)
+              );
+            }
+            if (typeof this.options.offset === "object") {
+              var x = getAxisOffsetAValue("x", this.options);
+              var y = getAxisOffsetAValue("y", this.options);
+              var xOffset = this.options.position == "left" ? x : "-" + x;
+              var yOffset = this.options.gravity == "toastify-top" ? y : "-" + y;
+              divElement.style.transform = "translate(" + xOffset + "," + yOffset + ")";
+            }
+            return divElement;
+          },
+          // Displaying the toast
+          showToast: function() {
+            this.toastElement = this.buildToast();
+            var rootElement;
+            if (typeof this.options.selector === "string") {
+              rootElement = document.getElementById(this.options.selector);
+            } else if (this.options.selector instanceof HTMLElement || typeof ShadowRoot !== "undefined" && this.options.selector instanceof ShadowRoot) {
+              rootElement = this.options.selector;
+            } else {
+              rootElement = document.body;
+            }
+            if (!rootElement) {
+              throw "Root element is not defined";
+            }
+            var elementToInsert = Toastify2.defaults.oldestFirst ? rootElement.firstChild : rootElement.lastChild;
+            rootElement.insertBefore(this.toastElement, elementToInsert);
+            Toastify2.reposition();
+            if (this.options.duration > 0) {
+              this.toastElement.timeOutValue = window.setTimeout(
+                function() {
+                  this.removeElement(this.toastElement);
+                }.bind(this),
+                this.options.duration
+              );
+            }
+            return this;
+          },
+          hideToast: function() {
+            if (this.toastElement.timeOutValue) {
+              clearTimeout(this.toastElement.timeOutValue);
+            }
+            this.removeElement(this.toastElement);
+          },
+          // Removing the element from the DOM
+          removeElement: function(toastElement) {
+            toastElement.className = toastElement.className.replace(" on", "");
+            window.setTimeout(
+              function() {
+                if (this.options.node && this.options.node.parentNode) {
+                  this.options.node.parentNode.removeChild(this.options.node);
+                }
+                if (toastElement.parentNode) {
+                  toastElement.parentNode.removeChild(toastElement);
+                }
+                this.options.callback.call(toastElement);
+                Toastify2.reposition();
+              }.bind(this),
+              400
+            );
+          }
+        };
+        Toastify2.reposition = function() {
+          var topLeftOffsetSize = {
+            top: 15,
+            bottom: 15
+          };
+          var topRightOffsetSize = {
+            top: 15,
+            bottom: 15
+          };
+          var offsetSize = {
+            top: 15,
+            bottom: 15
+          };
+          var allToasts = document.getElementsByClassName("toastify");
+          var classUsed;
+          for (var i = 0; i < allToasts.length; i++) {
+            if (containsClass(allToasts[i], "toastify-top") === true) {
+              classUsed = "toastify-top";
+            } else {
+              classUsed = "toastify-bottom";
+            }
+            var height = allToasts[i].offsetHeight;
+            classUsed = classUsed.substr(9, classUsed.length - 1);
+            var offset = 15;
+            var width = window.innerWidth > 0 ? window.innerWidth : screen.width;
+            if (width <= 360) {
+              allToasts[i].style[classUsed] = offsetSize[classUsed] + "px";
+              offsetSize[classUsed] += height + offset;
+            } else {
+              if (containsClass(allToasts[i], "toastify-left") === true) {
+                allToasts[i].style[classUsed] = topLeftOffsetSize[classUsed] + "px";
+                topLeftOffsetSize[classUsed] += height + offset;
+              } else {
+                allToasts[i].style[classUsed] = topRightOffsetSize[classUsed] + "px";
+                topRightOffsetSize[classUsed] += height + offset;
+              }
+            }
+          }
+          return this;
+        };
+        function getAxisOffsetAValue(axis, options) {
+          if (options.offset[axis]) {
+            if (isNaN(options.offset[axis])) {
+              return options.offset[axis];
+            } else {
+              return options.offset[axis] + "px";
+            }
+          }
+          return "0px";
+        }
+        function containsClass(elem, yourClass) {
+          if (!elem || typeof yourClass !== "string") {
+            return false;
+          } else if (elem.className && elem.className.trim().split(/\s+/gi).indexOf(yourClass) > -1) {
+            return true;
+          } else {
+            return false;
+          }
+        }
+        Toastify2.lib.init.prototype = Toastify2.lib;
+        return Toastify2;
+      });
+    }
+  });
+
   // node_modules/@hotwired/stimulus/dist/stimulus.js
   var EventListener = class {
     constructor(eventTarget, eventName, eventOptions) {
@@ -1656,9 +1989,9 @@
     }
   };
   var Guide = class {
-    constructor(logger) {
+    constructor(logger2) {
       this.warnedKeysByObject = /* @__PURE__ */ new WeakMap();
-      this.logger = logger;
+      this.logger = logger2;
     }
     warn(object, key, message) {
       let warnedKeys = this.warnedKeysByObject.get(object);
@@ -1788,7 +2121,7 @@
     }
   };
   var Scope = class _Scope {
-    constructor(schema, element, identifier, logger) {
+    constructor(schema, element, identifier, logger2) {
       this.targets = new TargetSet(this);
       this.classes = new ClassMap(this);
       this.data = new DataMap(this);
@@ -1798,7 +2131,7 @@
       this.schema = schema;
       this.element = element;
       this.identifier = identifier;
-      this.guide = new Guide(logger);
+      this.guide = new Guide(logger2);
       this.outlets = new OutletSet(this.documentScope, element);
     }
     findElement(selector) {
@@ -2451,4 +2784,540 @@
   var application = Application.start();
   application.debug = false;
   window.Stimulus = application;
+
+  // node_modules/@rails/actioncable/app/assets/javascripts/actioncable.esm.js
+  var adapters = {
+    logger: typeof console !== "undefined" ? console : void 0,
+    WebSocket: typeof WebSocket !== "undefined" ? WebSocket : void 0
+  };
+  var logger = {
+    log(...messages) {
+      if (this.enabled) {
+        messages.push(Date.now());
+        adapters.logger.log("[ActionCable]", ...messages);
+      }
+    }
+  };
+  var now = () => (/* @__PURE__ */ new Date()).getTime();
+  var secondsSince = (time) => (now() - time) / 1e3;
+  var ConnectionMonitor = class {
+    constructor(connection) {
+      this.visibilityDidChange = this.visibilityDidChange.bind(this);
+      this.connection = connection;
+      this.reconnectAttempts = 0;
+    }
+    start() {
+      if (!this.isRunning()) {
+        this.startedAt = now();
+        delete this.stoppedAt;
+        this.startPolling();
+        addEventListener("visibilitychange", this.visibilityDidChange);
+        logger.log(`ConnectionMonitor started. stale threshold = ${this.constructor.staleThreshold} s`);
+      }
+    }
+    stop() {
+      if (this.isRunning()) {
+        this.stoppedAt = now();
+        this.stopPolling();
+        removeEventListener("visibilitychange", this.visibilityDidChange);
+        logger.log("ConnectionMonitor stopped");
+      }
+    }
+    isRunning() {
+      return this.startedAt && !this.stoppedAt;
+    }
+    recordPing() {
+      this.pingedAt = now();
+    }
+    recordConnect() {
+      this.reconnectAttempts = 0;
+      this.recordPing();
+      delete this.disconnectedAt;
+      logger.log("ConnectionMonitor recorded connect");
+    }
+    recordDisconnect() {
+      this.disconnectedAt = now();
+      logger.log("ConnectionMonitor recorded disconnect");
+    }
+    startPolling() {
+      this.stopPolling();
+      this.poll();
+    }
+    stopPolling() {
+      clearTimeout(this.pollTimeout);
+    }
+    poll() {
+      this.pollTimeout = setTimeout(() => {
+        this.reconnectIfStale();
+        this.poll();
+      }, this.getPollInterval());
+    }
+    getPollInterval() {
+      const { staleThreshold, reconnectionBackoffRate } = this.constructor;
+      const backoff = Math.pow(1 + reconnectionBackoffRate, Math.min(this.reconnectAttempts, 10));
+      const jitterMax = this.reconnectAttempts === 0 ? 1 : reconnectionBackoffRate;
+      const jitter = jitterMax * Math.random();
+      return staleThreshold * 1e3 * backoff * (1 + jitter);
+    }
+    reconnectIfStale() {
+      if (this.connectionIsStale()) {
+        logger.log(`ConnectionMonitor detected stale connection. reconnectAttempts = ${this.reconnectAttempts}, time stale = ${secondsSince(this.refreshedAt)} s, stale threshold = ${this.constructor.staleThreshold} s`);
+        this.reconnectAttempts++;
+        if (this.disconnectedRecently()) {
+          logger.log(`ConnectionMonitor skipping reopening recent disconnect. time disconnected = ${secondsSince(this.disconnectedAt)} s`);
+        } else {
+          logger.log("ConnectionMonitor reopening");
+          this.connection.reopen();
+        }
+      }
+    }
+    get refreshedAt() {
+      return this.pingedAt ? this.pingedAt : this.startedAt;
+    }
+    connectionIsStale() {
+      return secondsSince(this.refreshedAt) > this.constructor.staleThreshold;
+    }
+    disconnectedRecently() {
+      return this.disconnectedAt && secondsSince(this.disconnectedAt) < this.constructor.staleThreshold;
+    }
+    visibilityDidChange() {
+      if (document.visibilityState === "visible") {
+        setTimeout(() => {
+          if (this.connectionIsStale() || !this.connection.isOpen()) {
+            logger.log(`ConnectionMonitor reopening stale connection on visibilitychange. visibilityState = ${document.visibilityState}`);
+            this.connection.reopen();
+          }
+        }, 200);
+      }
+    }
+  };
+  ConnectionMonitor.staleThreshold = 6;
+  ConnectionMonitor.reconnectionBackoffRate = 0.15;
+  var INTERNAL = {
+    message_types: {
+      welcome: "welcome",
+      disconnect: "disconnect",
+      ping: "ping",
+      confirmation: "confirm_subscription",
+      rejection: "reject_subscription"
+    },
+    disconnect_reasons: {
+      unauthorized: "unauthorized",
+      invalid_request: "invalid_request",
+      server_restart: "server_restart",
+      remote: "remote"
+    },
+    default_mount_path: "/cable",
+    protocols: ["actioncable-v1-json", "actioncable-unsupported"]
+  };
+  var { message_types, protocols } = INTERNAL;
+  var supportedProtocols = protocols.slice(0, protocols.length - 1);
+  var indexOf = [].indexOf;
+  var Connection = class {
+    constructor(consumer) {
+      this.open = this.open.bind(this);
+      this.consumer = consumer;
+      this.subscriptions = this.consumer.subscriptions;
+      this.monitor = new ConnectionMonitor(this);
+      this.disconnected = true;
+    }
+    send(data) {
+      if (this.isOpen()) {
+        this.webSocket.send(JSON.stringify(data));
+        return true;
+      } else {
+        return false;
+      }
+    }
+    open() {
+      if (this.isActive()) {
+        logger.log(`Attempted to open WebSocket, but existing socket is ${this.getState()}`);
+        return false;
+      } else {
+        const socketProtocols = [...protocols, ...this.consumer.subprotocols || []];
+        logger.log(`Opening WebSocket, current state is ${this.getState()}, subprotocols: ${socketProtocols}`);
+        if (this.webSocket) {
+          this.uninstallEventHandlers();
+        }
+        this.webSocket = new adapters.WebSocket(this.consumer.url, socketProtocols);
+        this.installEventHandlers();
+        this.monitor.start();
+        return true;
+      }
+    }
+    close({ allowReconnect } = {
+      allowReconnect: true
+    }) {
+      if (!allowReconnect) {
+        this.monitor.stop();
+      }
+      if (this.isOpen()) {
+        return this.webSocket.close();
+      }
+    }
+    reopen() {
+      logger.log(`Reopening WebSocket, current state is ${this.getState()}`);
+      if (this.isActive()) {
+        try {
+          return this.close();
+        } catch (error2) {
+          logger.log("Failed to reopen WebSocket", error2);
+        } finally {
+          logger.log(`Reopening WebSocket in ${this.constructor.reopenDelay}ms`);
+          setTimeout(this.open, this.constructor.reopenDelay);
+        }
+      } else {
+        return this.open();
+      }
+    }
+    getProtocol() {
+      if (this.webSocket) {
+        return this.webSocket.protocol;
+      }
+    }
+    isOpen() {
+      return this.isState("open");
+    }
+    isActive() {
+      return this.isState("open", "connecting");
+    }
+    triedToReconnect() {
+      return this.monitor.reconnectAttempts > 0;
+    }
+    isProtocolSupported() {
+      return indexOf.call(supportedProtocols, this.getProtocol()) >= 0;
+    }
+    isState(...states) {
+      return indexOf.call(states, this.getState()) >= 0;
+    }
+    getState() {
+      if (this.webSocket) {
+        for (let state in adapters.WebSocket) {
+          if (adapters.WebSocket[state] === this.webSocket.readyState) {
+            return state.toLowerCase();
+          }
+        }
+      }
+      return null;
+    }
+    installEventHandlers() {
+      for (let eventName in this.events) {
+        const handler = this.events[eventName].bind(this);
+        this.webSocket[`on${eventName}`] = handler;
+      }
+    }
+    uninstallEventHandlers() {
+      for (let eventName in this.events) {
+        this.webSocket[`on${eventName}`] = function() {
+        };
+      }
+    }
+  };
+  Connection.reopenDelay = 500;
+  Connection.prototype.events = {
+    message(event) {
+      if (!this.isProtocolSupported()) {
+        return;
+      }
+      const { identifier, message, reason, reconnect, type } = JSON.parse(event.data);
+      switch (type) {
+        case message_types.welcome:
+          if (this.triedToReconnect()) {
+            this.reconnectAttempted = true;
+          }
+          this.monitor.recordConnect();
+          return this.subscriptions.reload();
+        case message_types.disconnect:
+          logger.log(`Disconnecting. Reason: ${reason}`);
+          return this.close({
+            allowReconnect: reconnect
+          });
+        case message_types.ping:
+          return this.monitor.recordPing();
+        case message_types.confirmation:
+          this.subscriptions.confirmSubscription(identifier);
+          if (this.reconnectAttempted) {
+            this.reconnectAttempted = false;
+            return this.subscriptions.notify(identifier, "connected", {
+              reconnected: true
+            });
+          } else {
+            return this.subscriptions.notify(identifier, "connected", {
+              reconnected: false
+            });
+          }
+        case message_types.rejection:
+          return this.subscriptions.reject(identifier);
+        default:
+          return this.subscriptions.notify(identifier, "received", message);
+      }
+    },
+    open() {
+      logger.log(`WebSocket onopen event, using '${this.getProtocol()}' subprotocol`);
+      this.disconnected = false;
+      if (!this.isProtocolSupported()) {
+        logger.log("Protocol is unsupported. Stopping monitor and disconnecting.");
+        return this.close({
+          allowReconnect: false
+        });
+      }
+    },
+    close(event) {
+      logger.log("WebSocket onclose event");
+      if (this.disconnected) {
+        return;
+      }
+      this.disconnected = true;
+      this.monitor.recordDisconnect();
+      return this.subscriptions.notifyAll("disconnected", {
+        willAttemptReconnect: this.monitor.isRunning()
+      });
+    },
+    error() {
+      logger.log("WebSocket onerror event");
+    }
+  };
+  var extend2 = function(object, properties) {
+    if (properties != null) {
+      for (let key in properties) {
+        const value = properties[key];
+        object[key] = value;
+      }
+    }
+    return object;
+  };
+  var Subscription = class {
+    constructor(consumer, params = {}, mixin) {
+      this.consumer = consumer;
+      this.identifier = JSON.stringify(params);
+      extend2(this, mixin);
+    }
+    perform(action, data = {}) {
+      data.action = action;
+      return this.send(data);
+    }
+    send(data) {
+      return this.consumer.send({
+        command: "message",
+        identifier: this.identifier,
+        data: JSON.stringify(data)
+      });
+    }
+    unsubscribe() {
+      return this.consumer.subscriptions.remove(this);
+    }
+  };
+  var SubscriptionGuarantor = class {
+    constructor(subscriptions) {
+      this.subscriptions = subscriptions;
+      this.pendingSubscriptions = [];
+    }
+    guarantee(subscription) {
+      if (this.pendingSubscriptions.indexOf(subscription) == -1) {
+        logger.log(`SubscriptionGuarantor guaranteeing ${subscription.identifier}`);
+        this.pendingSubscriptions.push(subscription);
+      } else {
+        logger.log(`SubscriptionGuarantor already guaranteeing ${subscription.identifier}`);
+      }
+      this.startGuaranteeing();
+    }
+    forget(subscription) {
+      logger.log(`SubscriptionGuarantor forgetting ${subscription.identifier}`);
+      this.pendingSubscriptions = this.pendingSubscriptions.filter((s) => s !== subscription);
+    }
+    startGuaranteeing() {
+      this.stopGuaranteeing();
+      this.retrySubscribing();
+    }
+    stopGuaranteeing() {
+      clearTimeout(this.retryTimeout);
+    }
+    retrySubscribing() {
+      this.retryTimeout = setTimeout(() => {
+        if (this.subscriptions && typeof this.subscriptions.subscribe === "function") {
+          this.pendingSubscriptions.map((subscription) => {
+            logger.log(`SubscriptionGuarantor resubscribing ${subscription.identifier}`);
+            this.subscriptions.subscribe(subscription);
+          });
+        }
+      }, 500);
+    }
+  };
+  var Subscriptions = class {
+    constructor(consumer) {
+      this.consumer = consumer;
+      this.guarantor = new SubscriptionGuarantor(this);
+      this.subscriptions = [];
+    }
+    create(channelName, mixin) {
+      const channel = channelName;
+      const params = typeof channel === "object" ? channel : {
+        channel
+      };
+      const subscription = new Subscription(this.consumer, params, mixin);
+      return this.add(subscription);
+    }
+    add(subscription) {
+      this.subscriptions.push(subscription);
+      this.consumer.ensureActiveConnection();
+      this.notify(subscription, "initialized");
+      this.subscribe(subscription);
+      return subscription;
+    }
+    remove(subscription) {
+      this.forget(subscription);
+      if (!this.findAll(subscription.identifier).length) {
+        this.sendCommand(subscription, "unsubscribe");
+      }
+      return subscription;
+    }
+    reject(identifier) {
+      return this.findAll(identifier).map((subscription) => {
+        this.forget(subscription);
+        this.notify(subscription, "rejected");
+        return subscription;
+      });
+    }
+    forget(subscription) {
+      this.guarantor.forget(subscription);
+      this.subscriptions = this.subscriptions.filter((s) => s !== subscription);
+      return subscription;
+    }
+    findAll(identifier) {
+      return this.subscriptions.filter((s) => s.identifier === identifier);
+    }
+    reload() {
+      return this.subscriptions.map((subscription) => this.subscribe(subscription));
+    }
+    notifyAll(callbackName, ...args) {
+      return this.subscriptions.map((subscription) => this.notify(subscription, callbackName, ...args));
+    }
+    notify(subscription, callbackName, ...args) {
+      let subscriptions;
+      if (typeof subscription === "string") {
+        subscriptions = this.findAll(subscription);
+      } else {
+        subscriptions = [subscription];
+      }
+      return subscriptions.map((subscription2) => typeof subscription2[callbackName] === "function" ? subscription2[callbackName](...args) : void 0);
+    }
+    subscribe(subscription) {
+      if (this.sendCommand(subscription, "subscribe")) {
+        this.guarantor.guarantee(subscription);
+      }
+    }
+    confirmSubscription(identifier) {
+      logger.log(`Subscription confirmed ${identifier}`);
+      this.findAll(identifier).map((subscription) => this.guarantor.forget(subscription));
+    }
+    sendCommand(subscription, command) {
+      const { identifier } = subscription;
+      return this.consumer.send({
+        command,
+        identifier
+      });
+    }
+  };
+  var Consumer = class {
+    constructor(url) {
+      this._url = url;
+      this.subscriptions = new Subscriptions(this);
+      this.connection = new Connection(this);
+      this.subprotocols = [];
+    }
+    get url() {
+      return createWebSocketURL(this._url);
+    }
+    send(data) {
+      return this.connection.send(data);
+    }
+    connect() {
+      return this.connection.open();
+    }
+    disconnect() {
+      return this.connection.close({
+        allowReconnect: false
+      });
+    }
+    ensureActiveConnection() {
+      if (!this.connection.isActive()) {
+        return this.connection.open();
+      }
+    }
+    addSubProtocol(subprotocol) {
+      this.subprotocols = [...this.subprotocols, subprotocol];
+    }
+  };
+  function createWebSocketURL(url) {
+    if (typeof url === "function") {
+      url = url();
+    }
+    if (url && !/^wss?:/i.test(url)) {
+      const a = document.createElement("a");
+      a.href = url;
+      a.href = a.href;
+      a.protocol = a.protocol.replace("http", "ws");
+      return a.href;
+    } else {
+      return url;
+    }
+  }
+  function createConsumer(url = getConfig("url") || INTERNAL.default_mount_path) {
+    return new Consumer(url);
+  }
+  function getConfig(name) {
+    const element = document.head.querySelector(`meta[name='action-cable-${name}']`);
+    if (element) {
+      return element.getAttribute("content");
+    }
+  }
+
+  // app/javascript/channels/consumer.js
+  var consumer_default = createConsumer();
+
+  // app/javascript/channels/notification_channel.js
+  var import_toastify_js = __toESM(require_toastify());
+  consumer_default.subscriptions.create("NotificationChannel", {
+    connected() {
+      console.log("Connected");
+    },
+    disconnected() {
+    },
+    received(data) {
+      console.log("Receive");
+      (0, import_toastify_js.default)({
+        text: `${data.content}`,
+        duration: 3e3,
+        destination: "https://github.com/apvarun/toastify-js",
+        newWindow: true,
+        close: true,
+        gravity: "top",
+        // `top` or `bottom`
+        position: "right",
+        // `left`, `center` or `right`
+        offset: {
+          y: 80
+        },
+        stopOnFocus: true,
+        // Prevents dismissing of toast on hover
+        style: {
+          background: "#10ac84"
+        },
+        onClick: function() {
+        }
+        // Callback after click
+      }).showToast();
+    }
+  });
 })();
+/*! Bundled license information:
+
+toastify-js/src/toastify.js:
+  (*!
+   * Toastify js 1.12.0
+   * https://github.com/apvarun/toastify-js
+   * @license MIT licensed
+   *
+   * Copyright (C) 2018 Varun A P
+   *)
+*/

@@ -1,3 +1,13 @@
+@import "toastify-js/src/toastify.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  iframe {
+    @apply w-full md:w-80;
+    @apply md:h-44;
+    @apply rounded-xl;
+  }
+}
