@@ -13,7 +13,7 @@ services:
       - rails_app
 
   rails_app:
-    image: mytube:production
+    image: thinhbui/mytube:production
     container_name: mytube_rails_app_production
     restart: unless-stopped
     volumes:

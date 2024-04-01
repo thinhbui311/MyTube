@@ -13,8 +13,11 @@ RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
     dpkg-reconfigure --frontend=noninteractive locales && \
     update-locale LANG=en_US.UTF-8
 
+ARG SECRET_KEY_BASE
+
 ENV LANG en_US.UTF-8
 ENV RAILS_ENV=production
+ENV RAILS_MASTER_KEY=$RAILS_MASTER_KEY
 
 WORKDIR /app
 

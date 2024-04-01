@@ -33,6 +33,7 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+/config/credentials/production.key
 
 /node_modules
 /yarn-error.log
@@ -44,3 +45,5 @@ yarn-debug.log*
 # Ignore env files
 /docker/development/.development.env
 /docker/production/.production.env
+
+/config/credentials/environment.key
