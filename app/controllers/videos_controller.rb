@@ -13,7 +13,7 @@ class VideosController < ApplicationController
     video = current_user.videos.build(video_params)
 
     if video.save
-      NotificationVideoShareJob.perform_now(video.id)
+      NotificationVideoShareJob.perform_later(video.id)
       redirect_to videos_path
     else
       flash[:error] = video.errors.full_messages.to_sentence

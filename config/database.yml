@@ -3,6 +3,8 @@ default: &default
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   host: <%= ENV.fetch("MYTUBE_DATABASE_HOST") { "" } %>
+  username: <%= ENV.fetch("POSTGRES_USER") { "" } %>
+  password: <%= ENV.fetch("POSTGRES_PASSWORD") { "" } %>
 
 development:
   <<: *default
@@ -15,11 +17,7 @@ test:
 production:
   <<: *default
   database: mytube_production
-  username: <%= ENV.fetch("MYTUBE_DATABASE_USER") { "mytube" } %>
-  password: <%= ENV['MYTUBE_DATABASE_PASSWORD'] %>
 
 staging:
   <<: *default
   database: mytube_staging
-  username: <%= ENV.fetch("MYTUBE_DATABASE_USER") { "mytube" } %>
-  password: <%= ENV['MYTUBE_DATABASE_PASSWORD'] %>
