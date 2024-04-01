@@ -50,7 +50,7 @@ services:
       - 6379
 
   sidekiq:
-    image: mytube:production
+    image: thinhbui/mytube:production
     container_name: mytube_sidekiq_production
     depends_on:
       - db
