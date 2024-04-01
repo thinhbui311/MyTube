@@ -1,0 +1,74 @@
+version: '2'
+
+services:
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - 80:80
+    networks:
+      - mytube_backend
+    depends_on:
+      - rails_app
+
+  rails_app:
+    image: mytube:development
+    container_name: mytube_rails_app_development
+    restart: unless-stopped
+    volumes:
+      - rails_app:/app/tmp
+    networks:
+      - mytube_backend
+    expose:
+      - 3000
+    env_file:
+      - .development.env
+
+  db:
+    image: postgres:11-alpine
+    container_name: mytube_database_development
+    networks:
+      - mytube_backend
+    restart: unless-stopped
+    volumes:
+      - postgresql-data:/var/lib/postgresql/data
+    expose:
+      - 5432
+    env_file:
+      - .development.env
+
+  redis:
+    image: redis:7.0-alpine
+    container_name: mytube_redis_development
+    command: redis-server
+    volumes:
+      - redis:/data
+    networks:
+      - mytube_backend
+    expose:
+      - 6379
+
+  sidekiq:
+    image: mytube:development
+    container_name: mytube_sidekiq_development
+    depends_on:
+      - db
+      - redis
+    command: bundle exec sidekiq -C config/sidekiq.yml
+    restart: unless-stopped
+    environment:
+    - REDIS_URL=redis://mytube_redis_development:6379
+    networks:
+      - mytube_backend
+    env_file:
+      - .development.env
+
+volumes:
+  rails_app:
+  postgresql-data:
+  redis:
+
+networks:
+  mytube_backend:
+    driver: bridge
