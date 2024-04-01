@@ -43,4 +43,4 @@ yarn-debug.log*
 
 # Ignore env files
 /docker/development/.development.env
-/docker/development/.production.env
+/docker/production/.production.env
