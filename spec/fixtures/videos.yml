@@ -1,0 +1,44 @@
+movie:
+  user: adam
+  title: "스윙스(Swings) - 양아치 (Feat. 블랙넛 & 기리보이) (가사/lyrics)"
+  description:
+    "양아치 (feat. Black Nut & Giriboy) · 스윙스\n\nSwings #1 Mixtape Vol.II\n\n℗ 브랜뉴뮤직\n\nReleased on: 2013-02-27\n\n수익 창출 기능을 사용 하지 않습니다.\n광고 수익은 저작권자에게 돌아갑니다.\n\n※ 타임스탬프\n00:00 intro\n00:12 Verse 1 : 블랙넛\n01:17 Hook : 스윙스\n02:02 Verse 2 : 기리보이\n03:04 Hook : 스윙스"
+  embed_html:
+    "<iframe width=\"480\" height=\"270\" src=\"//www.youtube.com/embed/_QwNCenuFSw\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>"
+  published_at: "11/12/2022"
+  channel_title: "PlayNote"
+  thumbnail_url: "https://i.ytimg.com/vi/_QwNCenuFSw/default.jpg"
+  url: "https://youtu.be/_QwNCenuFSw?si=fglJs9dRZAK9FJzc"
+  view_count: 198392
+  like_count: 1281
+  dislike_count: nil
+  favorite_count: 0
+  comment_count: 112
+music:
+  user: adam
+  title: "Music video"
+  description: ""
+  embed_html: ""
+  published_at: "05/12/2023"
+  channel_title: "FunnyMusic"
+  thumbnail_url: ""
+  url: ""
+  view_count: 9999
+  like_count: 134
+  dislike_count: nil
+  favorite_count: 39491
+  comment_count: 19834
+podcast:
+  user: eva
+  title: "Podcast Selfhelp"
+  description: ""
+  embed_html: ""
+  published_at: "04/07/2020"
+  channel_title: "FunnyMusic"
+  thumbnail_url: ""
+  url: ""
+  view_count: 4542
+  like_count: 5367
+  dislike_count: nil
+  favorite_count: 4234
+  comment_count: 245

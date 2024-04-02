@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_29_124407) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_02_094115) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -34,7 +34,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_29_124407) do
     t.datetime "published_at"
     t.string "channel_title"
     t.string "thumbnail_url"
-    t.string "source_url"
+    t.string "url"
     t.integer "view_count"
     t.integer "like_count"
     t.integer "dislike_count"

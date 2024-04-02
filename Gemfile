@@ -27,6 +27,7 @@ group :development, :test do
   gem "pry-rails"
   gem "pry-remote"
   gem "rspec-rails", "~> 5.0.0"
+  gem "rails-controller-testing"
 end
 
 group :development do
