@@ -1,16 +1,23 @@
-version: '2'
-
 services:
   nginx:
     image: nginx:latest
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
+      - /etc/letsencrypt/:/etc/letsencrypt/:ro
     ports:
       - 80:80
+      - 443:443
     networks:
       - mytube_backend
     depends_on:
       - rails_app
+
+  certbot:
+    image: certbot/dns-cloudflare:latest
+    volumes:
+      - /var/www/certbot/:/var/www/certbot/:rw
+      - /etc/letsencrypt/:/etc/letsencrypt/:rw
+      - /.secrets/certbot/cloudflare.ini:/.secrets/certbot/cloudflare.ini
 
   rails_app:
     image: thinhbui/mytube:production

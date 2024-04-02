@@ -26,7 +26,7 @@ ADD . ./
 RUN bundle config build.nokogiri --use-system-libraries
 RUN gem install bundler && \
     bundle config set force_ruby_platform true && \
-    bundle install --jobs 20 --retry 5
+    bundle install --jobs 20 --retry 5 --without development test
 
 ADD package.json package.json
 ADD yarn.lock yarn.lock
