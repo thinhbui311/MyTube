@@ -24,6 +24,8 @@ class Video < ApplicationRecord
   def url_from_youtube
     return true if YOUTUBE_HOST.include?(URI.parse(url).host)
 
-    errors.add(:url, :invalid)
+    errors.add(:url, "is not from Youtube")
+  rescue URI::InvalidURIError
+    errors.add(:url, "is wrong format!")
   end
 end

@@ -27,6 +27,7 @@
    * Edit credentials file to set youtube api key: `EDITOR=vim rails credentials:edit` then set new key `yt_api_key`with value is your API key (or contact me for one).
    * Create and migrate db: `bundle exec rake db:create db:migrate`
    * Run project: `bin/dev` then access application at `localhost:3000`
+   * Run test: `bundle exec rspec`
 
    3.3. Installation with Docker:
 
