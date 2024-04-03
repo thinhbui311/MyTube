@@ -11,3 +11,12 @@
     @apply rounded-xl;
   }
 }
+
+.field_with_errors {
+  flex-grow: 1;
+}
+
+.toastify {
+  position: absolute;
+  right: 0px;
+}

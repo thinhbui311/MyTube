@@ -8,12 +8,16 @@
     <%= stylesheet_link_tag "application", media: "all", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", "data-turbolinks-eval": false, defer: true %>
   </head>
-  <body class="max-w-7xl mx-auto flex flex-col h-screen justify-between">
+  <body class="max-w-7xl mx-auto flex flex-col h-screen justify-between relative">
     <div class="main-header">
       <%= render "layouts/header" %>
     </div>
 
-    <div class="main-content w-full mx-auto grow">
+    <div class="main-content w-full mx-auto grow relative">
+      <div class="hidden sm:flex flex-col-reverse z-50 absolute top-0 right-0">
+        <%= flash_messages %>
+      </div>
+
       <%= yield %>
     </div>
 

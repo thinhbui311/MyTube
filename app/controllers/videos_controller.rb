@@ -10,13 +10,14 @@ class VideosController < ApplicationController
   end
 
   def create
-    video = current_user.videos.build(form_params)
+    @video = current_user.videos.build(form_params)
 
-    if video.save
-      NotificationVideoShareJob.perform_later(video.id)
-      redirect_to videos_path
+    if @video.save
+      NotificationVideoShareJob.perform_later(@video.id)
+      redirect_to videos_path, notice: "Success!"
     else
-      flash[:error] = video.errors.full_messages.to_sentence
+      flash.now[:alert] = @video.errors.full_messages.to_sentence
+      render :new
     end
   end
 
