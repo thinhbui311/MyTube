@@ -37,10 +37,10 @@
 
 * Build image directly on either local machine or server. Push image to repo is needed if image was built on local machine.
 * SSH to deploy server, set `yt_api_key` in `.production.env` file at `docker/production`
-* Run this command to start up application: `docker compose -f docker/development/compose.yml up -d`
-* Create DB: `docker compose -f docker/development/compose.yml run rails_app db:create`
-* Migrate DB: `docker compose -f docker/development/compose.yml run rails_app db:migrate `
-* Restart if needed: `docker compose -f docker/development/compose.yml restart`
+* Run this command to start up application: `docker compose -f docker/production/compose.yml up -d`
+* Create DB: `docker compose -f docker/production/compose.yml run rails_app db:create`
+* Migrate DB: `docker compose -f docker/production/compose.yml run rails_app db:migrate `
+* Restart if needed: `docker compose -f docker/production/compose.yml restart`
 
 5. #### Usage:
 
@@ -48,6 +48,6 @@
 * Click button `Share video` to reach share video page
 * Submit your youtube video that you want to share, all users will be notify about that.
 
-6. #### Troubleshootings:
+6. #### Troubleshooting:
 
 * if problems arise, please contact the creator directly via email (thinhducbui94@gmail.com)
