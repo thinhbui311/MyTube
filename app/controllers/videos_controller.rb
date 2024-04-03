@@ -17,7 +17,7 @@ class VideosController < ApplicationController
       redirect_to videos_path, notice: "Success!"
     else
       flash.now[:alert] = @video.errors.full_messages.to_sentence
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 

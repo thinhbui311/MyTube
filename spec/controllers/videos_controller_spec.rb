@@ -42,4 +42,42 @@ RSpec.describe VideosController, type: :controller do
       end
     end
   end
+
+  describe "POST create" do
+    context "When user not log in yet" do
+    end
+
+    context "When user logged in" do
+      before do
+        sign_in(users(:adam))
+      end
+
+      context "When url is invalid" do
+        let(:url){"https://www.google.com"}
+
+        it "Should response 422 error" do
+          post :create, params: {video: {url: url}}
+          expect(response).to have_http_status(:unprocessable_entity)
+          expect(response).to render_template(:new)
+        end
+      end
+
+      context "When url is valid" do
+        let(:url){"https://www.youtube.com/watch?v=iMTblJbmam4"}
+
+        it "Should create a new video share" do
+          post :create, params: {video: {url: url}}
+          expect(response).to have_http_status(:found)
+          expect(flash[:notice]).to be_present
+          expect(response).to redirect_to(:videos)
+        end
+
+        it "Should enqueue a job to notify other users" do
+          ActiveJob::Base.queue_adapter = :test
+
+          expect{post :create, params: {video: {url: url}}}.to have_enqueued_job(NotificationVideoShareJob)
+        end
+      end
+    end
+  end
 end
