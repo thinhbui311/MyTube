@@ -6,6 +6,7 @@
 
    * SignUp/Login user
    * Notify users when new a new video shared
+   * Friendly UI supports both web & mobile
 2. #### Prerequisites:
 
 
