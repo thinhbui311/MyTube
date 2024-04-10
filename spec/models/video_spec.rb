@@ -4,6 +4,7 @@ RSpec.describe Video, type: :model do
   subject {described_class.new(url: "")}
 
   it {should belong_to(:user)}
+  it {should validate_presence_of(:url)}
 
   it "is invalid with empty url" do
     expect(subject).to_not be_valid

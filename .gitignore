@@ -47,3 +47,6 @@ yarn-debug.log*
 /docker/production/.production.env
 
 /config/credentials/environment.key
+
+/config/credentials/test.key
+coverage

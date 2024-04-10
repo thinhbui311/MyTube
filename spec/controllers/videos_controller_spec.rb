@@ -45,6 +45,11 @@ RSpec.describe VideosController, type: :controller do
 
   describe "POST create" do
     context "When user not log in yet" do
+      it "Should redirect to login page" do
+        post :create, params: {video: {url: ""}}
+        expect(response).to have_http_status(:found)
+        expect(response).to redirect_to(:new_user_session)
+      end
     end
 
     context "When user logged in" do
@@ -56,7 +61,7 @@ RSpec.describe VideosController, type: :controller do
         let(:url){"https://www.google.com"}
 
         it "Should response 422 error" do
-          post :create, params: {video: {url: url}}
+          expect{post :create, params: {video: {url: url}}}.to_not change(Video, :count)
           expect(response).to have_http_status(:unprocessable_entity)
           expect(response).to render_template(:new)
         end
@@ -66,7 +71,7 @@ RSpec.describe VideosController, type: :controller do
         let(:url){"https://www.youtube.com/watch?v=iMTblJbmam4"}
 
         it "Should create a new video share" do
-          post :create, params: {video: {url: url}}
+          expect{post :create, params: {video: {url: url}}}.to change(Video, :count).by(1)
           expect(response).to have_http_status(:found)
           expect(flash[:notice]).to be_present
           expect(response).to redirect_to(:videos)
